@@ -20,4 +20,5 @@ model Post {
   author    String
   category  String
   published Boolean @default(false)
+  // @relation(fields: [authorId], references: [id], onDelete: Cascade)
 }
