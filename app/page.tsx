@@ -2,6 +2,15 @@ import prisma from "@/lib/prisma";
 // import Image from "next/image";
 import Link from "next/link";
 
+export type Post = {
+  id: number;
+  title: string;
+  content: string | null; // NULL許容のため
+  author: string;
+  category: string;
+  published: boolean;
+};
+
 export default async function Home() {
   const posts = await prisma.post.findMany({
     orderBy: { id: "desc" },
@@ -22,7 +31,7 @@ export default async function Home() {
 
       {/* 投稿リスト */}
       <ul className="space-y-4">
-        {posts.map((post) => (
+        {posts.map((post: Post) => (
           <li
             key={post.id}
             className="border border-gray-200 rounded-lg hover:shadow-md hover:bg-gray-50 transition duration-200 ease-in-out"
