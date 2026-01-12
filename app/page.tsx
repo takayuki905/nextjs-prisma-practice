@@ -2,14 +2,7 @@ import prisma from "@/lib/prisma";
 // import Image from "next/image";
 import Link from "next/link";
 
-export type Post = {
-  id: number;
-  title: string;
-  content: string | null; // NULL許容のため
-  author: string;
-  category: string;
-  published: boolean;
-};
+import { Post } from "@/types/post";
 
 export default async function Home() {
   const posts = await prisma.post.findMany({
